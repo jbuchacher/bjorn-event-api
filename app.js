@@ -1,8 +1,5 @@
 var koa = require('koa');
 var app = koa();
-var router = require('./routes');
-
-app.use(router.routes());
-app.use(router.allowedMethods());
+var routes = require('./routes')(app);
 
 app.listen(process.env.EVENT_API_PORT);
