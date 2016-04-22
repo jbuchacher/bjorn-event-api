@@ -1,12 +1,8 @@
 var koa = require('koa');
 var app = koa();
+var router = require('./routes');
 
-var models = require('./models');
-
-app.use(function *(){
-   models.Sensor.findAll().then(function(sensors) {
-       this.body = sensors;
-       });
-});
+app.use(router.routes());
+app.use(router.allowedMethods());
 
 app.listen(process.env.EVENT_API_PORT);
